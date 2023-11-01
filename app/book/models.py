@@ -1,9 +1,8 @@
 """
-Модели для модуля книг
+Models for book module
 """
 from django.db import models
 from django.conf import settings
-# Create your models here.
 from author.models import Author
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.signals import post_save
