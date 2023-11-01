@@ -5,7 +5,8 @@ from author.serializers import AuthorListSerializer
 
 class BookListSerializer(serializers.ModelSerializer):
     """serializer for recipes"""
-
+    author = serializers.CharField(source="author.name", read_only=True)
+    genre = serializers.CharField(source="genre.title", read_only=True)
     class Meta:
         model = Book
         fields = ['id', 'title', 'genre', 'author', 'rating']
@@ -24,7 +25,6 @@ class ReviewListSerializer(serializers.ModelSerializer):
 class BookDetailSerializer(BookListSerializer):
     """Serializer for book detail view"""
     reviews = ReviewListSerializer(many=True)
-    author = AuthorListSerializer(many=False)
     in_fav = serializers.SerializerMethodField()
 
     def get_in_fav(self, obj):
