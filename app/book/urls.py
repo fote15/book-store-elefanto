@@ -12,4 +12,5 @@ urlpatterns = [
     path('detail', views.get_detail_book, name='all-books'),
     path('leave-review', views.leave_review, name='leave-review'),
     path('add-book-to-fav', views.add_book_to_fav, name='add-to-fav'),
+    path('all-genres', views.get_list_genres, name='all-genres'),
 ]

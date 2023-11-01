@@ -1,12 +1,12 @@
-from .models import Book, BookReview
+from .models import Book, BookReview, Genre
 from rest_framework import serializers
-from author.serializers import AuthorListSerializer
 
 
 class BookListSerializer(serializers.ModelSerializer):
     """serializer for recipes"""
     author = serializers.CharField(source="author.name", read_only=True)
     genre = serializers.CharField(source="genre.title", read_only=True)
+
     class Meta:
         model = Book
         fields = ['id', 'title', 'genre', 'author', 'rating']
@@ -38,6 +38,14 @@ class BookDetailSerializer(BookListSerializer):
     class Meta(BookListSerializer.Meta):
         fields = (BookListSerializer.Meta.fields +
                   ['description', 'created_at', 'reviews', 'author', 'in_fav'])
+
+
+class GenresListSerializer(serializers.ModelSerializer):
+    """serializer for book list request"""
+    class Meta:
+        model = Genre
+        fields = ['id', 'title']
+        read_only_fields = ['id']
 
 
 class BookListRequestSerializer(serializers.Serializer):

@@ -5,10 +5,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Book
+from .models import Book, Genre
 from .serializers import BookListSerializer, BookListRequestSerializer, \
     BookDetailRequestSerializer, BookDetailSerializer, \
-    LeaveReviewOnBookRequestSerializer, AddBookToFavRequestSerializer
+    LeaveReviewOnBookRequestSerializer, AddBookToFavRequestSerializer, \
+    GenresListSerializer
 from drf_yasg.utils import swagger_auto_schema
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
@@ -46,6 +47,14 @@ def get_list_books(req):
                + request['limit']
                ]
     serializer = BookListSerializer(queryset, many=True)
+    return Response(serializer.data)
+
+
+@api_view(('GET',))
+@permission_classes((AllowAny,))
+def get_list_genres(req):
+    queryset = Genre.objects.filter().all()
+    serializer = GenresListSerializer(queryset, many=True)
     return Response(serializer.data)
 
 
