@@ -1,4 +1,3 @@
-# Elefanto tech assignment
 
 Rest API for book store
 
@@ -22,11 +21,6 @@ make add_app
 
 ```
 
-## Дополнительно для ревьеверов
-
-Тесты на модулях core и user, а так же wait_for_db команда были в проекте изначально.
-Если у вас уже стоит инстанс Postgres, убедитель что у вас есть база - dev_store
-Приятного просмотра!
 
 ## License
 
